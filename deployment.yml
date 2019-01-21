@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: demoapp-canary
+spec:
+  replicas: 10
+  template:
+    metadata:
+      labels:
+        type: canary
+    spec:
+      containers:
+      - name: demoapp-canary
+        image: bitspradp/cd_demo_spin:${{CF_SHORT_REVISION}}
+        ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP
