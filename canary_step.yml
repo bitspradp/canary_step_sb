@@ -12,7 +12,7 @@ steps:
     tag: ${{CF_SHORT_REVISION}}
   canaryDeploy:
     title: "Deploying new version ${{CF_SHORT_REVISION}}"
-    image: codefresh/k8s-canary:master
+    image: codefresh/k8s-kubectl
     environment:
       - WORKING_VOLUME=.
       - SERVICE_NAME=demo-app-canary
@@ -21,4 +21,4 @@ steps:
       - NEW_VERSION=${{CF_SHORT_REVISION}}
       - SLEEP_SECONDS=10
       - NAMESPACE=default
-      - KUBE_CONTEXT='stage-cluster@SaaS\\ Cloud\\ Prototype'
+      - KUBE_CONTEXT='stage-cluster@SaaS\ Cloud\ Prototype'
