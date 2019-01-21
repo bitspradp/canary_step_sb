@@ -16,7 +16,7 @@ steps:
     environment:
       - WORKING_VOLUME=.
       - SERVICE_NAME=demo-app-canary
-      - DEPLOYMENT_NAME=demoapp-e58556b
+      - DEPLOYMENT_NAME=demoapp
       - TRAFFIC_INCREMENT=20
       - NEW_VERSION=${{CF_SHORT_REVISION}}
       - SLEEP_SECONDS=10
