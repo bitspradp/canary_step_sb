@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    type: canary
+    version: ${{CF_SHORT_REVISION}}
+  name: demoapp-canary
+spec:
+  ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    type: canary
+  sessionAffinity: None
+  type: LoadBalancer
