@@ -19,6 +19,6 @@ steps:
       - DEPLOYMENT_NAME=demoapp-e58556b
       - TRAFFIC_INCREMENT=20
       - NEW_VERSION=${{CF_SHORT_REVISION}}
-      - SLEEP_SECONDS=40
+      - SLEEP_SECONDS=10
       - NAMESPACE=default
-      - KUBE_CONTEXT=stage-cluster@SaaS\ Cloud\ Prototype
+      - KUBE_CONTEXT=stage-cluster@SaaS Cloud Prototype
