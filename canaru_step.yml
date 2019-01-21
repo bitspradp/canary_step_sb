@@ -1,0 +1,33 @@
+version: '1.0'
+steps:
+  buildAppImage:
+    type: build
+    description: Builds my service
+    image_name: bitspradp/cd_demo_spin
+    tag: ${{CF_SHORT_REVISION}}
+  pushAppImage:
+    type: push
+    candidate: ${{buildAppImage}}
+    tag: ${{CF_SHORT_REVISION}}
+  buildTestImage:
+    type: build
+    description: Builds image with tests
+    dockerfile: Dockerfile.test
+    image_name: bitspradp/test
+    tag: ${{CF_SHORT_REVISION}}
+  pushTestImage:
+    type: push
+    candidate: ${{buildTestImage}}
+    tag: ${{CF_SHORT_REVISION}}
+  canaryDeploy:
+    title: "Deploying new version ${{CF_SHORT_REVISION}}"
+    image: codefresh/k8s-canary:master
+    environment:
+      - WORKING_VOLUME=.
+      - SERVICE_NAME=demo-app-canary
+      - DEPLOYMENT_NAME=demoapp-e58556b
+      - TRAFFIC_INCREMENT=20
+      - NEW_VERSION=${{CF_SHORT_REVISION}}
+      - SLEEP_SECONDS=40
+      - NAMESPACE=canary
+      - KUBE_CONTEXT=stage-cluster@SaaS\ Cloud\ Prototype
