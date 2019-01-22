@@ -3,21 +3,22 @@ steps:
   buildAppImage:
     type: build
     description: Builds my service
-    image_name: bitspradp/test
-    tag: ${{CF_SHORT_REVISION}}
+    image_name: test
+    working_directory: ./
+    tag: latest
     metadata:
       set:
-      	- TEST: Pending Anchore scan..
+      	- QA: Pending Anchore scan..
   ScanMyImage:
     title: Scanning Docker Image
     image: anchore/engine-cli:latest
     commands:
       - echo "Scanning image with Anchore"
-      - anchore-cli image add bitspradp/test:${{CF_SHORT_REVISION}}
+      - anchore-cli image add test
       - echo "Waiting for analysis to complete"
-      - anchore-cli image wait bitspradp/test:${{CF_SHORT_REVISION}}
+      - anchore-cli image wait test
       - echo "Analysis complete"
-      - if [ "${{ANCHORE_FAIL_ON_POLICY}}" == "true" ] ; then anchore-cli evaluate check bitspradp/test:${{CF_SHORT_REVISION}}; fi
+      - if [ "${{ANCHORE_FAIL_ON_POLICY}}" == "true" ] ; then anchore-cli evaluate check test; fi
   pushAppImage:
     title: Pushing Docker Image
     description: Pushing Docker Image to Dockerhub...
