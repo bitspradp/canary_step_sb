@@ -4,18 +4,14 @@ steps:
     type: build
     description: Builds my service
     working_directory: ./
-    image_name: rajp/codefresh_test
-    dockerfile: Dockerfile
+    image_name: bitspradp/test
+    tag: ${{CF_SHORT_REVISION}}
     metadata:
       set:
       	- TEST: Pending Anchore scan..
   ScanMyImage:
     title: Scanning Docker Image
     image: anchore/engine-cli:latest
-    registry: docker.io
-    credentials:
-      username: '${{dockerhubUsername}}'
-      password: '${{dockerhubPassword}}'
     commands:
       - echo "Scanning image with Anchore"
       - anchore-cli image add rajp/codefresh_test
@@ -28,11 +24,8 @@ steps:
     description: Pushing Docker Image to Dockerhub...
     type: push
     candidate: ${{buildAppImage}}
+    image_name: bitspradp/cd_demo_spin
     tag: ${{CF_SHORT_REVISION}}
-    registry: docker.io
-    credentials:
-      username: '${{dockerhubUsername}}'
-      password: '${{dockerhubPassword}}'
   canaryDeploy:
     title: "Deploying new version ${{CF_SHORT_REVISION}}"
     image: codefresh/k8s-canary:master
