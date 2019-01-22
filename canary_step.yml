@@ -5,7 +5,6 @@ steps:
     description: Builds my service
     image_name: bitspradp/test
     tag: ${{CF_SHORT_REVISION}}
-    registry: dockerhub
     metadata:
       set:
       	- TEST: Pending Anchore scan..
@@ -26,6 +25,7 @@ steps:
     candidate: ${{buildAppImage}}
     image_name: bitspradp/cd_demo_spin
     tag: ${{CF_SHORT_REVISION}}
+    registry: dockerhub
   canaryDeploy:
     title: "Deploying new version ${{CF_SHORT_REVISION}}"
     image: codefresh/k8s-canary:master
