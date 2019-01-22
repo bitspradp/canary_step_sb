@@ -14,11 +14,11 @@ steps:
     image: anchore/engine-cli:latest
     commands:
       - echo "Scanning image with Anchore"
-      - anchore-cli image add ${{TEST_IMAGE}}
+      - anchore-cli image add rajp/codefresh_test
       - echo "Waiting for analysis to complete"
-      - anchore-cli image wait ${{TEST_IMAGE}}
+      - anchore-cli image wait rajp/codefresh_test
       - echo "Analysis complete"
-      - if [ "${{ANCHORE_FAIL_ON_POLICY}}" == "true" ] ; then anchore-cli evaluate check ${{TEST_IMAGE}}; fi
+      - if [ "${{ANCHORE_FAIL_ON_POLICY}}" == "true" ] ; then anchore-cli evaluate check rajp/codefresh_test; fi
   pushAppImage:
     title: Pushing Docker Image
     description: Pushing Docker Image to Dockerhub...
