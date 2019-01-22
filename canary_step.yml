@@ -5,6 +5,7 @@ steps:
     description: Builds my service
     image_name: bitspradp/test
     tag: ${{CF_SHORT_REVISION}}
+    registry: dockerhub
     metadata:
       set:
       	- TEST: Pending Anchore scan..
