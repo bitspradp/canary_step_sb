@@ -3,7 +3,7 @@ steps:
   buildAppImage:
     type: build
     description: Builds my service
-    working_directory: .
+    working_directory: ./
     image_name: ${{TEST_IMAGE}}
     dockerfile: Dockerfile
     metadata:
