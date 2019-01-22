@@ -9,7 +9,7 @@ steps:
     metadata:
       set:
       	- QA: Pending Anchore scan..
-  pushAppImage:
+  pushTestImage:
     title: Pushing Docker Image
     description: Pushing Docker Image to Dockerhub test...
     type: push
