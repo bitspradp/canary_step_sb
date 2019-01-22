@@ -3,7 +3,6 @@ steps:
   buildAppImage:
     type: build
     description: Builds my service
-    working_directory: ./
     image_name: bitspradp/test
     tag: ${{CF_SHORT_REVISION}}
     metadata:
