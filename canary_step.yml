@@ -5,6 +5,7 @@ steps:
     description: Builds my service
     working_directory: .
     image_name: ${{TEST_IMAGE}}
+    dockerfile: Dockerfile
     metadata:
       set:
       	- TEST: Pending Anchore scan..
