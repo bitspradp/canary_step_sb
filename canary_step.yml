@@ -25,6 +25,10 @@ steps:
     type: push
     candidate: ${{buildAppImage}}
     tag: ${{CF_SHORT_REVISION}}
+    registry: docker.io
+    credentials:
+      username: '${{dockerhubUsername}}'
+      password: '${{dockerhubPassword}}'
   canaryDeploy:
     title: "Deploying new version ${{CF_SHORT_REVISION}}"
     image: codefresh/k8s-canary:master
