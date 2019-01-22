@@ -4,7 +4,7 @@ steps:
     type: build
     description: Builds my service
     working_directory: ./
-    image_name: ${{TEST_IMAGE}}
+    image_name: rajp/codefresh_test
     dockerfile: Dockerfile
     metadata:
       set:
