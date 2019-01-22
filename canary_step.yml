@@ -12,6 +12,10 @@ steps:
   ScanMyImage:
     title: Scanning Docker Image
     image: anchore/engine-cli:latest
+    registry: docker.io
+    credentials:
+      username: '${{dockerhubUsername}}'
+      password: '${{dockerhubPassword}}'
     commands:
       - echo "Scanning image with Anchore"
       - anchore-cli image add rajp/codefresh_test
