@@ -25,7 +25,8 @@ steps:
       - anchore-cli image add bitspradp/test
       - echo "Waiting for analysis to complete"
       - anchore-cli image wait bitspradp/test
-      - anchore-cli --json image content bitspradp/test
+      - anchore-cli --json image content bitspradp/test os
+      - anchore-cli --json image content bitspradp/test python
       - anchore-cli --json image vuln bitspradp/test all
       - anchore-cli --json image get bitspradp/test
       - echo "Analysis complete"
