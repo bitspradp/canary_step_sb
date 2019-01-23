@@ -44,7 +44,7 @@ steps:
     image: codefresh/k8s-canary:master
     environment:
       - WORKING_VOLUME=.
-      - SERVICE_NAME=demo-app-canary
+      - SERVICE_NAME=demoapp
       - DEPLOYMENT_NAME=demoapp
       - TRAFFIC_INCREMENT=20
       - NEW_VERSION=${{CF_SHORT_REVISION}}
