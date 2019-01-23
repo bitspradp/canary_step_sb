@@ -31,7 +31,7 @@ def healthz():
 
 @app.route('/version')
 def version():
-    return app.config['SWAGGER_INFO']['version']+"\n"
+    return "DEPLOYMENT_VERSION: "+app.config['SWAGGER_INFO']['version']+"\n"
 
 @app.route('/ping')
 def ping():
