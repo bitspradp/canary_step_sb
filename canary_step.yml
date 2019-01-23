@@ -26,8 +26,10 @@ steps:
       - echo "Waiting for analysis to complete"
       - anchore-cli image wait bitspradp/test
       - anchore-cli --json image content bitspradp/test
+      - anchore-cli --json image vuln bitspradp/test
+      - anchore-cli --json image get bitspradp/test
       - echo "Analysis complete"
-      - if [ "${{ANCHORE_FAIL_ON_POLICY}}" == "true" ] ; then anchore-cli evaluate check bitspradp/test; fi
+      - if [ "${{ANCHORE_FAIL_ON_POLICY}}" == "true" ] ; then anchore-cli --json evaluate check bitspradp/test; fi
   pushAppImage:
     title: Pushing Docker Image
     description: Pushing Docker Image to Dockerhub...
