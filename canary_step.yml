@@ -25,7 +25,7 @@ steps:
       - anchore-cli image add bitspradp/test
       - echo "Waiting for analysis to complete"
       - anchore-cli image wait bitspradp/test
-      - anchore_ci_tools --analyze --report --image bitspradp/test --timeout 500
+      - anchore-cli --json image content bitspradp/test
       - echo "Analysis complete"
       - if [ "${{ANCHORE_FAIL_ON_POLICY}}" == "true" ] ; then anchore-cli evaluate check bitspradp/test; fi
   pushAppImage:
